@@ -10,7 +10,6 @@ import com.adai.opensource.util.CommonUtils;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 /**
  * @author zhouchengpei
@@ -27,7 +26,6 @@ public class CreateController {
      */
     public static void execute(String database, String tableName) {
         TableAndColumnInfo data = CoreDbUtils.getTableAndColumnsInfo(database, tableName);
-        List<TableAndColumnInfo.ColumnInfo> columnInfoList = data.getColumnInfoList();
         PrintWriter writer = CommonUtils.getPrintWriter(CreateControllerConfig.LOCATION, CreateControllerConfig.CONTROLLER_NAME + ".java");
 
         // 输出包名

@@ -12,23 +12,4 @@ public class SwitchConfig {
      */
     public static final Boolean IS_OPEN_SLF4J = true;
 
-    /**
-     * 是否标准的MVC模式 这里主要指包路径是否符合标准的MVC模式
-     * java/com.adai
-     * -------controller
-     * -------service
-     * ----------impl
-     * -------dao
-     * <p>
-     * java/resources
-     * --------mapper
-     * <p>
-     * 当该值为true时 会根据ParentConfig的BASE_LOCATION和BASE_PACKAGE_NAME
-     * 自动生成标准的controller、service、impl、dao、mapper 如果已经存在那么就跳过
-     * 如果不存在就会自动包目录或文件目录
-     *
-     * 如果STANDARD_MVC = false 那么目录文件就必须要存在 否则会报错
-     */
-    public static final Boolean STANDARD_MVC = false;
-
 }

@@ -16,21 +16,26 @@ public class ParentConfig {
      * Dao:        OperationLogDao
      * Mapper:     OperationLogMapper
      */
-    static final String BASE_NAME = "Student";
+    static String BASE_NAME = "Student";
 
     /**
      * 基本的路径
      */
-    static final String BASE_LOCATION = "F:\\JavaCode\\Idea\\Study\\Temp\\src\\main\\";
+    public static String BASE_LOCATION = "F:\\JavaCode\\Idea\\Study\\Temp\\src\\main\\";
 
     /**
-     * 基本的包名
+     * 基本的包名 注意 该值要和BASE_DIRECTORY_PATH一一对应
      */
-    static final String BASE_PACKAGE_NAME ="com.adai";
+    static String BASE_PACKAGE_NAME = "com.adai";
+
+    /**
+     * 基本的路径名 注意 该值要和BASE_PACKAGE_NAME一一对应
+     */
+    public static String BASE_DIRECTORY_PATH = "com\\adai\\";
 
     /**
      * 作者的姓名 生成的entity 需要一些注释
      */
-    public static final String AUTHOR = "zhouchengpei";
+    public static String AUTHOR = "zhouchengpei";
 
 }

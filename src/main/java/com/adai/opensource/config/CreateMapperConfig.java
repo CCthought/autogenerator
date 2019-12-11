@@ -10,7 +10,7 @@ public class CreateMapperConfig {
     /**
      * mapper文件生成的路径
      */
-    public static final String LOCATION = ParentConfig.BASE_LOCATION + "resources\\mapper\\";
+    public static String LOCATION = ParentConfig.BASE_LOCATION + "resources\\mapper\\";
 
     /**
      * MAPPER的名字

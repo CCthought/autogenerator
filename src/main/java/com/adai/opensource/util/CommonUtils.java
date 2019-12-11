@@ -1,7 +1,5 @@
 package com.adai.opensource.util;
 
-import com.adai.opensource.config.CreateEntityConfig;
-
 import java.io.*;
 
 /**

@@ -1,9 +1,7 @@
 package com.adai.opensource.core;
 
-import com.adai.opensource.config.CreateControllerConfig;
 import com.adai.opensource.config.CreateServiceConfig;
 import com.adai.opensource.config.ParentConfig;
-import com.adai.opensource.config.SwitchConfig;
 import com.adai.opensource.database.CoreDbUtils;
 import com.adai.opensource.pojo.TableAndColumnInfo;
 import com.adai.opensource.util.CommonUtils;
@@ -11,7 +9,6 @@ import com.adai.opensource.util.CommonUtils;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 /**
  * @author zhouchengpei
@@ -28,7 +25,6 @@ public class CreateService {
      */
     public static void execute(String database, String tableName) {
         TableAndColumnInfo data = CoreDbUtils.getTableAndColumnsInfo(database, tableName);
-        List<TableAndColumnInfo.ColumnInfo> columnInfoList = data.getColumnInfoList();
         PrintWriter writer = CommonUtils.getPrintWriter(CreateServiceConfig.LOCATION, CreateServiceConfig.SERVICE_NAME + ".java");
 
         // 输出包名

@@ -9,7 +9,7 @@ public class CreateDaoConfig {
     /**
      * dao文件生成的路径
      */
-    public static final String LOCATION = ParentConfig.BASE_LOCATION + "java\\com\\adai\\dao\\";
+    public static String LOCATION = ParentConfig.BASE_LOCATION + "java\\" + ParentConfig.BASE_DIRECTORY_PATH + "dao\\";
 
     /**
      * dao的名字
@@ -19,5 +19,5 @@ public class CreateDaoConfig {
     /**
      * dao 所在的包 对应class最上方的 package...
      */
-    public static final String PACKAGE_NAME = "com.adai.dao";
+    public static final String PACKAGE_NAME = ParentConfig.BASE_PACKAGE_NAME + ".dao";
 }

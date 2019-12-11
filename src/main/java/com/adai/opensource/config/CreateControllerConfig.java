@@ -9,15 +9,15 @@ public class CreateControllerConfig {
     /**
      * controller文件生成的路径
      */
-    public static final String LOCATION = ParentConfig.BASE_LOCATION + "java\\com\\adai\\controller\\";
+    public static String LOCATION = ParentConfig.BASE_LOCATION + "java\\" + ParentConfig.BASE_DIRECTORY_PATH + "controller\\";
 
     /**
      * controller的名字
      */
-    public static final String CONTROLLER_NAME = ParentConfig.BASE_NAME + "Controller";
+    public static String CONTROLLER_NAME = ParentConfig.BASE_NAME + "Controller";
 
     /**
      * controller 所在的包 对应class最上方的 package...
      */
-    public static final String PACKAGE_NAME = "com.adai.controller";
+    public static String PACKAGE_NAME = ParentConfig.BASE_PACKAGE_NAME + ".controller";
 }

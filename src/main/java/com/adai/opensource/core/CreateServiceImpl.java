@@ -26,7 +26,12 @@ public class CreateServiceImpl {
      */
     public static void execute(String database, String tableName) {
         TableAndColumnInfo data = CoreDbUtils.getTableAndColumnsInfo(database, tableName);
-        PrintWriter writer = CommonUtils.getPrintWriter(CreateServiceConfig.LOCATION + "impl\\", CreateServiceConfig.SERVICE_NAME + "Impl" + ".java");
+        PrintWriter writer;
+        if (CreateServiceConfig.IS_SAME_PATH) {
+            writer = CommonUtils.getPrintWriter(CreateServiceConfig.LOCATION, CreateServiceConfig.SERVICE_NAME.substring(1) + "Impl" + ".java");
+        } else {
+            writer = CommonUtils.getPrintWriter(CreateServiceConfig.LOCATION + "impl\\", CreateServiceConfig.SERVICE_NAME.substring(1) + "Impl" + ".java");
+        }
 
         // 输出包名
         writer.println(String.format("package %s;", CreateServiceConfig.PACKAGE_NAME + ".impl"));
@@ -49,12 +54,12 @@ public class CreateServiceImpl {
 
         // 输出类
         writer.println("@Service");
-        writer.println(String.format("public class %s implements %s{", CreateServiceConfig.SERVICE_NAME + "Impl", CreateServiceConfig.SERVICE_NAME));
+        writer.println(String.format("public class %s implements %s{", CreateServiceConfig.SERVICE_NAME.substring(1) + "Impl", CreateServiceConfig.SERVICE_NAME));
         writer.println();
 
         // 开启了slf4j
         if (SwitchConfig.IS_OPEN_SLF4J) {
-            writer.println(String.format("    private static final Logger logger = LoggerFactory.getLogger(%s.class);", CreateServiceConfig.SERVICE_NAME + "Impl"));
+            writer.println(String.format("    private static final Logger logger = LoggerFactory.getLogger(%s.class);", CreateServiceConfig.SERVICE_NAME.substring(1) + "Impl"));
             writer.println();
         }
 
@@ -63,9 +68,4 @@ public class CreateServiceImpl {
         writer.flush();
         writer.close();
     }
-
-    public static void main(String[] args) {
-        execute("adai", "student");
-    }
-
 }

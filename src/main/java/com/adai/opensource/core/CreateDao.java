@@ -9,7 +9,6 @@ import com.adai.opensource.util.CommonUtils;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 /**
  * @author zhouchengpei
@@ -26,7 +25,6 @@ public class CreateDao {
      */
     public static void execute(String database, String tableName) {
         TableAndColumnInfo data = CoreDbUtils.getTableAndColumnsInfo(database, tableName);
-        List<TableAndColumnInfo.ColumnInfo> columnInfoList = data.getColumnInfoList();
         PrintWriter writer = CommonUtils.getPrintWriter(CreateDaoConfig.LOCATION, CreateDaoConfig.DAO_NAME + ".java");
 
         // 输出包名

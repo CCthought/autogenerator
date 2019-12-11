@@ -10,11 +10,11 @@ public class CreateEntityConfig {
     /**
      * entity 生成的路径
      */
-    public static final String LOCATION = ParentConfig.BASE_LOCATION + "java\\com\\adai\\entity\\";
+    public static String LOCATION = ParentConfig.BASE_LOCATION + "java\\" + ParentConfig.BASE_DIRECTORY_PATH + "entity\\";
 
     /**
      * entity 所在的包 对应class最上方的 package...
      */
-    public static final String PACKAGE_NAME = "com.adai.entity";
+    public static final String PACKAGE_NAME = ParentConfig.BASE_PACKAGE_NAME + ".entity";
 
 }
