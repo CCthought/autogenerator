@@ -10,15 +10,11 @@ public class CreateEntityConfig {
     /**
      * entity 生成的路径
      */
-    public static final String LOCATION = "F:\\JavaCode\\Idea\\github\\autogenerator\\src\\main\\java\\com\\adai\\opensource\\core\\";
+    public static final String LOCATION = ParentConfig.BASE_LOCATION + "java\\com\\adai\\entity\\";
 
     /**
      * entity 所在的包 对应class最上方的 package...
      */
-    public static final String PACKAGE_NAME = "com.adai.opensource.core;";
+    public static final String PACKAGE_NAME = "com.adai.entity";
 
-    /**
-     * 作者的姓名 生成的entity 需要一些注释
-     */
-    public static final String AUTHOR = "zhouchengpei";
 }

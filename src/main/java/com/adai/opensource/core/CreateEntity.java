@@ -1,11 +1,13 @@
 package com.adai.opensource.core;
 
 import com.adai.opensource.config.CreateEntityConfig;
+import com.adai.opensource.config.ParentConfig;
 import com.adai.opensource.database.CoreDbUtils;
 import com.adai.opensource.pojo.TableAndColumnInfo;
+import com.adai.opensource.util.CommonUtils;
 import com.adai.opensource.util.StringUtils;
 
-import java.io.*;
+import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -13,29 +15,9 @@ import java.util.List;
 /**
  * @author zhouchengpei
  * date   2019/12/10 9:47
- * description .
+ * description 生成数据库实体entity文件
  */
 public class CreateEntity {
-
-    /**
-     * 获取字符输出流
-     *
-     * @param fileName 文件名
-     * @return BufferedWriter
-     */
-    private static PrintWriter getPrintWriter(String fileName) {
-        try {
-            File file = new File(CreateEntityConfig.LOCATION + fileName);
-            if (!file.exists()) {
-                return new PrintWriter(new OutputStreamWriter(new FileOutputStream(file)));
-            } else {
-                throw new RuntimeException(CreateEntityConfig.LOCATION + fileName + "已经存在");
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            throw new RuntimeException("获取输出流失败");
-        }
-    }
 
     /**
      * 生成 数据库 对应表 的entity
@@ -47,10 +29,10 @@ public class CreateEntity {
         TableAndColumnInfo data = CoreDbUtils.getTableAndColumnsInfo(database, tableName);
         // 已经将第一个字母变成大写
         String className = data.getTableName();
-        PrintWriter writer = getPrintWriter(className + ".java");
+        PrintWriter writer = CommonUtils.getPrintWriter(CreateEntityConfig.LOCATION,className + ".java");
 
         // 1.输出包名
-        writer.println("package " + CreateEntityConfig.PACKAGE_NAME);
+        writer.println(String.format("package %s;", CreateEntityConfig.PACKAGE_NAME));
         writer.println();
         // 2.输出 导入import包名
         List<TableAndColumnInfo.ColumnInfo> columnInfoList = data.getColumnInfoList();
@@ -64,7 +46,7 @@ public class CreateEntity {
 
         //3.输出作者信息
         writer.println("/**");
-        writer.println(String.format(" * @author %s", CreateEntityConfig.AUTHOR));
+        writer.println(String.format(" * @author %s", ParentConfig.AUTHOR));
         writer.println(String.format(" * date   %s", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))));
         if (StringUtils.isEmptyWithTrim(data.getTableRemarks())) {
             writer.println(String.format(" * description 数据库%s 表%s 没有表注释", database, tableName));

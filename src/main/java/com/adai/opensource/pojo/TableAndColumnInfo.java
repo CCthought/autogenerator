@@ -12,7 +12,7 @@ public class TableAndColumnInfo {
 
     /**
      * 主键
-     *
+     * <p>
      * 表名
      */
     private String tableName;
@@ -60,7 +60,11 @@ public class TableAndColumnInfo {
     public static class ColumnInfo {
 
         /**
-         * 字段名字
+         * 数据库保存的原始字段名
+         */
+        private String originalColumnName;
+        /**
+         * 字段名字 驼峰处理过后
          */
         private String columnName;
 
@@ -102,13 +106,22 @@ public class TableAndColumnInfo {
         public ColumnInfo() {
         }
 
-        public ColumnInfo(String columnName, String columnType, String columnRemarks, Boolean ifNull, Boolean ifPrimaryKey, Boolean ifAutoincrement) {
+        public ColumnInfo(String originalColumnName, String columnName, String columnType, String columnRemarks, Boolean ifNull, Boolean ifPrimaryKey, Boolean ifAutoincrement) {
+            this.originalColumnName = originalColumnName;
             this.columnName = columnName;
             this.columnType = columnType;
             this.columnRemarks = columnRemarks;
             this.ifNull = ifNull;
             this.ifPrimaryKey = ifPrimaryKey;
             this.ifAutoincrement = ifAutoincrement;
+        }
+
+        public String getOriginalColumnName() {
+            return originalColumnName;
+        }
+
+        public void setOriginalColumnName(String originalColumnName) {
+            this.originalColumnName = originalColumnName;
         }
 
         public String getColumnName() {
@@ -178,7 +191,8 @@ public class TableAndColumnInfo {
         @Override
         public String toString() {
             return "ColumnInfo{" +
-                    "columnName='" + columnName + '\'' +
+                    "originalColumnName='" + originalColumnName + '\'' +
+                    ", columnName='" + columnName + '\'' +
                     ", columnType='" + columnType + '\'' +
                     ", columnRemarks='" + columnRemarks + '\'' +
                     ", ifNull=" + ifNull +

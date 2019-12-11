@@ -90,8 +90,9 @@ public class CoreDbUtils {
         ResultSet columnsSet = metaData.getColumns(database, null, table, null);
         List<TableAndColumnInfo.ColumnInfo> columnInfoList = tableAndColumnInfo.getColumnInfoList();
         while (columnsSet.next()) {
-            String columnName = columnsSet.getString("COLUMN_NAME");
-            String columnType = changeDbTypeToJavaType(columnName, columnsSet.getString("TYPE_NAME"));
+            String originalColumnName = columnsSet.getString("COLUMN_NAME");
+            String columnName = originalColumnName;
+            String columnType = changeDbTypeToJavaType(originalColumnName, columnsSet.getString("TYPE_NAME"));
             if (columnName.startsWith(IS_BOOLEAN)) {
                 // 将 is_替换成 if_ 避免序列化问题
                 columnName = "if_" + columnName.substring(3);
@@ -99,7 +100,7 @@ public class CoreDbUtils {
             String columnRemarks = columnsSet.getString("REMARKS");
             boolean isNull = columnsSet.getBoolean("IS_NULLABLE");
             boolean isAutoincrement = columnsSet.getBoolean("IS_AUTOINCREMENT");
-            TableAndColumnInfo.ColumnInfo columnInfo = new TableAndColumnInfo.ColumnInfo(StringUtils.camelName(columnName), columnType, columnRemarks, isNull, false, isAutoincrement);
+            TableAndColumnInfo.ColumnInfo columnInfo = new TableAndColumnInfo.ColumnInfo(originalColumnName,StringUtils.camelName(columnName), columnType, columnRemarks, isNull, false, isAutoincrement);
 
 
             if (primaryKeysList.contains(columnName)) {

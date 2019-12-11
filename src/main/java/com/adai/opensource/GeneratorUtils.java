@@ -1,6 +1,6 @@
 package com.adai.opensource;
 
-import com.adai.opensource.core.CreateEntity;
+import com.adai.opensource.core.*;
 
 /**
  * @author zhouchengpei
@@ -10,7 +10,16 @@ import com.adai.opensource.core.CreateEntity;
 public class GeneratorUtils {
 
     public static void main(String[] args) {
-        CreateEntity.execute("adai", "student");
+        execute("adai", "student");
+    }
+
+    private static void execute(String database, String tableName){
+        CreateController.execute(database, tableName);
+        CreateDao.execute(database, tableName);
+        CreateEntity.execute(database, tableName);
+        CreateMapper.execute(database, tableName);
+        CreateService.execute(database, tableName);
+        CreateServiceImpl.execute(database,tableName);
     }
 
 }
